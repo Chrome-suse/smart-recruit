@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.talelin.latticy.mapper.ResumeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.github.talelin.latticy.model.ResumeDO">
+        <id column="id" property="id" />
+        <result column="ability" property="ability" />
+        <result column="work_experience" property="workExperience" />
+        <result column="project_experience" property="projectExperience" />
+        <result column="education_experience" property="educationExperience" />
+        <result column="personal_summary" property="personalSummary" />
+        <result column="user_id" property="userId" />
+        <result column="grade" property="grade" />
+    </resultMap>
+
+    <select id="getByUserId" resultMap="BaseResultMap">
+        SELECT *
+        FROM resume r
+        WHERE r.user_id=#{userId}
+        AND
+        r.delete_time IS NULL
+    </select>
+</mapper>
