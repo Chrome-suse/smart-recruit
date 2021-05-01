@@ -56,12 +56,12 @@
         </select>
 
     <select id="sortByHits" resultMap="PositionResultMap">
-        SELECT p.id,p.title,p.hits,c.name as company_name,c.logo
+        SELECT p.*,c.name as company_name,c.logo
         FROM position p,company c
         where p.company_id = c.id
         and p.delete_time is null
         and p.state = 1
-        ORDER BY hits desc LIMIT 0,10
+        ORDER BY hits desc LIMIT 0,8
     </select>
 
     <update id="updateState">

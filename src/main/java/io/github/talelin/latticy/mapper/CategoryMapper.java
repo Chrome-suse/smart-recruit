@@ -3,6 +3,8 @@ package io.github.talelin.latticy.mapper;
 import io.github.talelin.latticy.model.CategoryDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CategoryMapper extends BaseMapper<CategoryDO> {
 
+    List<CategoryDO> show();
 }

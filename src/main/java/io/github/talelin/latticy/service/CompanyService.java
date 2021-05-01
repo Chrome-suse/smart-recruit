@@ -4,6 +4,8 @@ import io.github.talelin.latticy.dto.company.CreateOrUpdateCompanyDTO;
 import io.github.talelin.latticy.model.CompanyDO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -21,4 +23,6 @@ public interface CompanyService extends IService<CompanyDO> {
     boolean createCompany(CreateOrUpdateCompanyDTO validator);
 
     CompanyDO getByName(String name);
+
+    List<CompanyDO> findHotCompany();
 }

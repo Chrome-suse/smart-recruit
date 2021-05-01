@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -60,5 +62,10 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyDO> im
         wrapper.eq("name", name);
         CompanyDO companyDO = companyMapper.selectOne(wrapper);
         return companyDO;
+    }
+
+    @Override
+    public List<CompanyDO> findHotCompany() {
+        return companyMapper.findHotCompany();
     }
 }

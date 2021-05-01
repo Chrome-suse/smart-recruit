@@ -20,4 +20,11 @@
     <update id="updateState">
         update company set state = #{state} where id = #{id}
     </update>
+
+    <select id="findHotCompany" resultMap="BaseResultMap">
+        SELECT * FROM `company`
+        where delete_time is null
+        and state = 1
+        LIMIT 0,8
+    </select>
 </mapper>

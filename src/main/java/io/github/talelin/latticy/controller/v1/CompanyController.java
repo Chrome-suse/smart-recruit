@@ -23,6 +23,7 @@ import io.github.talelin.latticy.vo.UpdatedVO;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 /**
 * @author 陈灿杰
@@ -168,5 +169,17 @@ public class CompanyController {
         // 获取封装有结果集的分页对象
         IPage<CompanyDO> paging = companyService.getBaseMapper().selectPage(pager, wrapper);
         return PageUtil.build(paging);
+    }
+
+    /**
+     * 热门公司
+     */
+    @GetMapping("/find")
+    public List<CompanyDO> findHot() {
+        List<CompanyDO> companyDOS = companyService.findHotCompany();
+        if (companyDOS == null || companyDOS.size() == 0) {
+            throw  new NotFoundException(30000);
+        }
+        return companyDOS;
     }
 }

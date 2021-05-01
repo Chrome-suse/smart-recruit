@@ -23,4 +23,6 @@ public interface CategoryService extends IService<CategoryDO> {
     boolean deleteById(Integer id);
 
     List<CategoryDO> getAll();
+
+    List<CategoryDO> show();
 }

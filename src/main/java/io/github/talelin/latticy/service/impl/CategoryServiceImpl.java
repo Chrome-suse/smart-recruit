@@ -48,4 +48,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, CategoryDO>
     public List<CategoryDO> getAll() {
         return categoryMapper.selectList(null);
     }
+
+    @Override
+    public List<CategoryDO> show() {
+        return categoryMapper.show();
+    }
 }

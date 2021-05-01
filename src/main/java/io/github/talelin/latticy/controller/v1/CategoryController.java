@@ -130,4 +130,17 @@ public class CategoryController {
         IPage<CategoryDO> paging = categoryService.getBaseMapper().selectPage(pager, null);
         return PageUtil.build(paging);
     }
+
+    /**
+     * 查询部分职位分类用于首页展示
+     * @return
+     */
+    @GetMapping("/show")
+    public List<CategoryDO> show() {
+        List<CategoryDO> categoryDOS = categoryService.show();
+        if (categoryDOS == null || categoryDOS.size() == 0) {
+            throw new NotFoundException(51000);
+        }
+        return categoryDOS;
+    }
 }
