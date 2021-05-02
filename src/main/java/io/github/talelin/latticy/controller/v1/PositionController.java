@@ -63,22 +63,25 @@ public class PositionController {
         // 1. 获取到发布的职位所属的公司外文名
         CompanyDO company = companyService.getById(validator.getCompanyId());
         String foreignName = company.getForeignName();
-        // 2. 通知所有观察者发布职位了
-        SingleUtil.map.get(foreignName).setState(1);
-        SingleUtil.map.get(foreignName).setPositionName(validator.getTitle());
-        SingleUtil.map.get(foreignName).notifyObservers();
-        // 3. 将工具类SingleUtil中的全局messageMap中的数据一一存放到通知表notify中
-        Set<String> set = SingleUtil.messageMap.keySet();
-        Iterator<String> iterator = set.iterator();
-        while (iterator.hasNext()) {
-            String key = iterator.next();
-            NotifyDO notifyDO = new NotifyDO();
-            notifyDO.setUserName(key);
-            notifyDO.setContent(SingleUtil.messageMap.get(key));
-            notifyService.create(notifyDO);
+        // 判断全局map中是否存在对应的被观察者类
+        if (SingleUtil.map.containsKey(foreignName)) {
+            // 2. 通知所有观察者发布职位了
+            SingleUtil.map.get(foreignName).setState(1);
+            SingleUtil.map.get(foreignName).setPositionName(validator.getTitle());
+            SingleUtil.map.get(foreignName).notifyObservers();
+            // 3. 将工具类SingleUtil中的全局messageMap中的数据一一存放到通知表notify中
+            Set<String> set = SingleUtil.messageMap.keySet();
+            Iterator<String> iterator = set.iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                NotifyDO notifyDO = new NotifyDO();
+                notifyDO.setUserName(key);
+                notifyDO.setContent(SingleUtil.messageMap.get(key));
+                notifyService.create(notifyDO);
+            }
+            // 4. 清空全局messageMap中的数据
+            SingleUtil.messageMap.clear();
         }
-        // 4. 清空全局messageMap中的数据
-        SingleUtil.messageMap.clear();
         return new CreatedVO(2100);
     }
 

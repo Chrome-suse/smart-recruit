@@ -38,7 +38,7 @@ public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, ResumeDO> imple
         resumeDO.setPersonalSummary(validator.getPersonalSummary());
         resumeDO.setUserId(validator.getUserId());
         // 简历评分，完成一个模块20分，总分为100分
-        if (validator.getWorkExperience() != null && validator.getEducationExperience() != null && validator.getPersonalSummary() != null) {
+        if (validator.getWorkExperience() != null && validator.getProjectExperience() != null && validator.getPersonalSummary() != null) {
             // 工作经历不为空且项目经历不为空且个人总结不为空——100分
             resumeDO.setGrade(100);
         } else if (validator.getWorkExperience() == null && validator.getProjectExperience() != null && validator.getPersonalSummary() != null) {
@@ -75,7 +75,7 @@ public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, ResumeDO> imple
         resumeDO.setPersonalSummary(validator.getPersonalSummary());
         resumeDO.setUserId(validator.getUserId());
         // 简历评分，完成一个模块20分，总分为100分
-        if (validator.getWorkExperience() != null && validator.getEducationExperience() != null && validator.getPersonalSummary() != null) {
+        if (validator.getWorkExperience() != null && validator.getProjectExperience() != null && validator.getPersonalSummary() != null) {
             // 工作经历不为空且项目经历不为空且个人总结不为空——100分
             resumeDO.setGrade(100);
         } else if (validator.getWorkExperience() == null && validator.getProjectExperience() != null && validator.getPersonalSummary() != null) {
